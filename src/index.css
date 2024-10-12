@@ -66,6 +66,15 @@ body {
     animation: blink 0.7s step-end infinite;
 }
 
+.writing-mode-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    margin-right: 1rem; /* Add some space between the title and the images */
+}
+
+
+
 @keyframes blink {
     50% {
         border-color: transparent;

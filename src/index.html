@@ -156,8 +156,10 @@
         <div class="projects-container flex overflow-x-auto snap-x snap-mandatory pb-6">
             <!-- Illustrations Box -->
             <div class=" project-item snap-start flex-shrink-0 w-full rounded-lg shadow-lg p-4 flex flex-col justify-between transition-transform transform mx-2"> <!-- Used mx-2 for margins -->
-                <h3 class="text-xl font-bold mb-2">Illustrations</h3>
+                <h3 class="text-xl font-bold mb-2 ">Illustrations</h3>
+
                 <div class="grid grid-cols-3 gap-2">
+                  
                     <a href="#" target="_blank" rel="noopener noreferrer" class="block">
                         <img src="images/illus-1.png" alt="Illustration 1" class="w-full h-auto rounded-lg">
                     </a>
@@ -376,28 +378,73 @@
         });
 
 
-         // Typing effect for the header and subtitle
-         const typedText = "Hi, I am Saumili";
-        const typedSubtitle = "and here's my portfolio...";
-        let index = 0;
-        let subtitleIndex = 0;
-        const typingSpeed = 100; // Speed in milliseconds
+        // Typing effect for the header and subtitle
+const typedText = "Hi, I am Saumili!";
+const typedSubtitle = "and here's my portfolio...";
+let index = 0;
+let subtitleIndex = 0;
+let isBackspacing = false;
+let dotCount = 0; // To track the dots during backspacing
+const typingSpeed = 150; // Speed in milliseconds
+const backspacingSpeed = 100; // Speed of backspacing in milliseconds
+const pauseDuration = 1000; // Duration to pause after typing "Hi..."
 
-        function typeWriter() {
-            if (index < typedText.length) {
-                document.getElementById("typed").innerHTML += typedText.charAt(index);
-                index++;
+function typeWriter() {
+    const typedElement = document.getElementById("typed");
+    const typedSubtitleElement = document.getElementById("typed-subtitle");
+
+    if (!isBackspacing) {
+        // Typing "Hi..."
+        if (index < 2) { // For "Hi"
+            typedElement.innerHTML += typedText.charAt(index);
+            index++;
+            setTimeout(typeWriter, typingSpeed);
+        } else if (index === 2 && dotCount==0) { // After typing "Hi"
+            typedElement.innerHTML += "..."; // Add the "..."
+            index++;
+            setTimeout(() => {
+                isBackspacing = true; // Start backspacing
                 setTimeout(typeWriter, typingSpeed);
-            } else if (subtitleIndex < typedSubtitle.length) {
-                document.getElementById("typed-subtitle").innerHTML += typedSubtitle.charAt(subtitleIndex);
-                subtitleIndex++;
-                setTimeout(typeWriter, typingSpeed);
-            }
+            }, pauseDuration);
+        } else if (index < typedText.length) { // Typing the rest of the text
+            typedElement.innerHTML += typedText.charAt(index);
+            index++;
+            setTimeout(typeWriter, typingSpeed);
+        } else { // Once the main text is done, start the subtitle
+            setTimeout(() => {
+                subtitleIndex = 0; // Reset index for subtitle
+                typedSubtitleElement.innerHTML = ""; // Clear previous subtitle
+                typeSubtitle();
+            }, typingSpeed);
         }
+    } else {
+        // Backspacing effect
+        if (dotCount < 3) { // Backspace only the "..."
+            typedElement.innerHTML = typedElement.innerHTML.slice(0, -1); // Remove last character
+            dotCount++;
+            setTimeout(typeWriter, backspacingSpeed);
+        } else { // After backspacing, continue typing the rest
+            isBackspacing = false;
+            index = 2; // Set index to continue typing ", I am Saumili!"
+           // Reset dot count
+            setTimeout(typeWriter, typingSpeed);
+        }
+    }
+}
 
-        window.onload = function() {
-            typeWriter();
-        };
+function typeSubtitle() {
+    const typedSubtitleElement = document.getElementById("typed-subtitle");
+    if (subtitleIndex < typedSubtitle.length) {
+        typedSubtitleElement.innerHTML += typedSubtitle.charAt(subtitleIndex);
+        subtitleIndex++;
+        setTimeout(typeSubtitle, typingSpeed);
+    }
+}
+
+window.onload = function () {
+    typeWriter();
+};
+
     </script>
 </body>
 </html>
