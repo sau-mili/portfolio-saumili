@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary-color: #468FAF; /* Custom hover color */
+    --secondary-color: #89C2D9; /* Example secondary color */
+    --background-color: #F1F1F1; /* Background color */
+    --text-color: #012A4A; /* Main text color */
+    --accent-color: #A9D6E5; /* Accent color */
+}
