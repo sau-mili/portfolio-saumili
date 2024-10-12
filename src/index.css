@@ -142,7 +142,7 @@ footer h2{
     /* box-shadow: rgba(255, 255, 255, 0.8) 0px 3px 8px; */
 }
 .about img{
-    position: absolute;
+    position:absolute;
     bottom: 0px!important;
     right: 0px !important;
     width: 40%;
