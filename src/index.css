@@ -144,9 +144,9 @@ footer h2{
 .about img{
     position: absolute;
     bottom: 0px!important;
-    right:0px !important;
-    width: 55%;
-
+    right: 0px !important;
+    width: 40%;
+    float:right;
 
 }
 .contact form input{
