@@ -99,10 +99,10 @@
     <!-- Explore Section with Right-Aligned Content and Illustration Placeholder (Box with Curved Corners) -->
     <section id="main" class="w-full md:p-20 flex justify-center">
         <div class="explore flex justify-between items-center p-16 rounded-lg shadow-lg border border-gray-200 w-4/5 max-w-5xl">
-            <!-- Placeholder for Illustration -->
-            <div class="hidden md:block w-1/2 h-64 bg-gray-800 rounded-lg mr-10 shadow-lg">
-                <p class="text-center text-gray-300 py-24">Illustration</p>
+            <div id="illustration-container" class="hidden md:block w-1/2 h-auto">
+                <img id="illustration-image" src="path-to-default-image.png" alt="Default Illustration" class="object-cover rounded-lg"/>
             </div>
+            
             <!-- Right-aligned explore content -->
             <div class="max-w-xl w-1/2 text-left">
                 <h2 class="text-3xl md:text-4xl font-semibold mb-5">Explore My Portfolio</h2>
@@ -139,6 +139,7 @@
                     <ul class="list-disc list-inside">
                         <li>Bachelor's Degree in Engineering</li>
                         <li>Certifications in UI/UX Design and Web Development</li>
+                        <li>Diploma in traditional Art</li>
                         <li>Various Design Workshops and Courses</li>
                     </ul>
                 </div>
@@ -222,43 +223,6 @@
     </div>
 </section>
 
-<script>
-    // Variables to track current index and elements
-    let currentIndex = 0;
-    const slides = document.querySelectorAll('.projects-container > div');
-    const dots = document.querySelectorAll('.dot');
-
-    // Function to set the current slide and update dots
-    function setCurrentSlide(index) {
-        if (index < 0 || index >= slides.length) return; // Prevent out of bounds
-        // Scroll to the selected slide
-        slides[index].scrollIntoView({ behavior: 'smooth', inline: 'start' });
-        updateDots(index);
-    }
-
-    // Function to update dot indicators
-    function updateDots(index) {
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('bg-[#01497C]', i === index);  // Change to your desired active color
-            dot.classList.toggle('bg-gray-400', i !== index);
-        });
-    }
-
-    // Function to detect swipe and set the current slide based on scroll position
-    function detectCurrentSlide() {
-        let newIndex = Math.round(Math.abs(document.querySelector('.projects-container').scrollLeft / slides[0].clientWidth));
-        if (newIndex !== currentIndex) {
-            currentIndex = newIndex;
-            updateDots(currentIndex);
-        }
-    }
-
-    // Event listener to detect scroll
-    document.querySelector('.projects-container').addEventListener('scroll', detectCurrentSlide);
-
-    // Initialize dots
-    updateDots(currentIndex);
-</script>
 
 <!-- Website Development -->
 <section id="projects" class="w-full py-10 px-8 md:px-16 flex flex-col items-center">
@@ -327,6 +291,44 @@
 </footer>
 
     <!-- JavaScript -->
+     
+<script>
+    // Variables to track current index and elements
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.projects-container > div');
+    const dots = document.querySelectorAll('.dot');
+
+    // Function to set the current slide and update dots
+    function setCurrentSlide(index) {
+        if (index < 0 || index >= slides.length) return; // Prevent out of bounds
+        // Scroll to the selected slide
+        slides[index].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+        updateDots(index);
+    }
+
+    // Function to update dot indicators
+    function updateDots(index) {
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('bg-[#01497C]', i === index);  // Change to your desired active color
+            dot.classList.toggle('bg-gray-400', i !== index);
+        });
+    }
+
+    // Function to detect swipe and set the current slide based on scroll position
+    function detectCurrentSlide() {
+        let newIndex = Math.round(Math.abs(document.querySelector('.projects-container').scrollLeft / slides[0].clientWidth));
+        if (newIndex !== currentIndex) {
+            currentIndex = newIndex;
+            updateDots(currentIndex);
+        }
+    }
+
+    // Event listener to detect scroll
+    document.querySelector('.projects-container').addEventListener('scroll', detectCurrentSlide);
+
+    // Initialize dots
+    updateDots(currentIndex);
+</script>
     <script>
         // Scroll to selected section
         function scrollToSection(sectionId) {
@@ -337,6 +339,7 @@
         function openTab(tabId, button) {
             const contents = document.querySelectorAll('.tab-content');
             const buttons = document.querySelectorAll('button');
+            const illustrationImage = document.getElementById('illustration-image');
 
             // Hide all tab contents
             contents.forEach(content => content.classList.remove('active-tab'));
@@ -349,11 +352,29 @@
 
             // Underline the clicked button
             button.classList.add('active-btn');
+
+            // Update illustration image based on the tab selected
+        if (tabId === 'skills') {
+            illustrationImage.src = 'images/skills-2.png';
+            illustrationImage.alt = 'Skills Illustration';
+        } else if (tabId === 'experience') {
+            illustrationImage.src = 'images/experience.png';
+            illustrationImage.alt = 'Experience Illustration';
+        } else if (tabId === 'education') {
+            illustrationImage.src = 'images/education.png';
+            illustrationImage.alt = 'Education Illustration';
+        }
         }
 
-        // Set default tab to Skills
-        document.getElementById('skills').classList.add('active-tab');
-        document.getElementById('skills-btn').classList.add('active-btn');
+        // default tab to Skills
+        // document.getElementById('skills').classList.add('active-tab');
+        // document.getElementById('skills-btn').classList.add('active-btn');
+        
+        // Set default tab and illustration image on page load
+        document.addEventListener('DOMContentLoaded', () => {
+        openTab('skills', document.getElementById('skills-btn'));  // Set default tab
+        });
+
 
          // Typing effect for the header and subtitle
          const typedText = "Hi, I am Saumili";
