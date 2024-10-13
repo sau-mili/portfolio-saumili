@@ -158,7 +158,7 @@
             <div class=" project-item snap-start flex-shrink-0 w-full rounded-lg shadow-lg p-4 flex flex-col justify-between transition-transform transform mx-2"> <!-- Used mx-2 for margins -->
                 <h3 class="text-xl font-bold mb-2 ">Illustrations</h3>
 
-                <div class="grid grid-cols-3 gap-2">
+                <div class="grid grid-cols-3 gap-auto">
                   
                     <a href="#" target="_blank" rel="noopener noreferrer" class="block">
                         <img src="images/illus-1.png" alt="Illustration 1" class="w-full h-auto rounded-lg">
@@ -192,25 +192,48 @@
             <div class="project-item snap-start flex-shrink-0 w-full rounded-lg shadow-lg p-4 flex flex-col justify-between transition-transform transform mx-2"> <!-- Used mx-2 for margins -->
                 <h3 class="text-xl font-bold mb-2">UI/UX</h3>
                 <div class="grid grid-cols-3 gap-2">
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="block">
-                        <img src="#" alt="UI/UX Project 1" class="w-full h-auto rounded-lg">
+                    <a href="https://www.figma.com/proto/IoajMZak0uVHmHsKHzqnP1/pass-the-mic'24?page-id=0%3A1&node-id=1-2&t=Oc4uBJkeZXEGqJBU-1" target="_blank" rel="noopener noreferrer" class="block">
+                        <img src="images/UI-1.png" alt="UI/UX Project 1" class="w-full h-auto rounded-lg">
+                    </a>
+                    <a href="https://www.figma.com/proto/qixmCUVkQt1e3BY8NjKViI/GSSOC-Reg?page-id=0%3A1&node-id=16-2&t=ok1oqgrLzCzW2pv1-1" target="_blank" rel="noopener noreferrer" class="block">
+                        <img src="images/ui-2.png" alt="UI/UX Project 2" class="w-full h-auto rounded-lg">
                     </a>
                     <a href="#" target="_blank" rel="noopener noreferrer" class="block">
-                        <img src="#" alt="UI/UX Project 2" class="w-full h-auto rounded-lg">
+                        <img src="images/ui-3.png" alt="UI/UX Project 3" class="w-full h-auto rounded-lg">
                     </a>
                 </div>
             </div>
+
+            <script>
+                window.onload = function() {
+    const gridItems = document.querySelectorAll('.project-image');
+
+    // Get the minimum height and minimum width among all grid items
+    let minHeight = Math.min(...Array.from(gridItems).map(item => item.offsetHeight));
+    let minWidth = Math.min(...Array.from(gridItems).map(item => item.offsetWidth));
+
+    // Apply the minimum height and width to all grid items
+    gridItems.forEach(item => {
+        item.style.height = `${minHeight}px`;
+        item.style.width = `${minWidth}px`;
+    });
+};
+
+            </script>
 
             <!-- Websites Box -->
             <div class="project-item snap-start flex-shrink-0 w-full rounded-lg shadow-lg p-4 flex flex-col justify-between transition-transform transform mx-2"> <!-- Used mx-2 for margins -->
                 <h3 class="text-xl font-bold mb-2">Website Design</h3>
                 <div class="grid grid-cols-2 gap-2">
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="block">
-                        <img src="#" alt="Website Project 1" class="w-full h-auto rounded-lg">
+                    <a href="https://www.figma.com/proto/IoajMZak0uVHmHsKHzqnP1/pass-the-mic'24?page-id=0%3A1&node-id=1-2&t=Oc4uBJkeZXEGqJBU-1" target="_blank" rel="noopener noreferrer" class="block">
+                        <img src="images/web-ui1.png" alt="Website UI/UX Project 1" class="w-full h-auto rounded-lg">
                     </a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="block">
-                        <img src="#" alt="Website Project 2" class="w-full h-auto rounded-lg">
+                    <a href="https://www.figma.com/proto/7BAM2vnaoGru8jA3HnMYy6/socioAI?page-id=0%3A1&node-id=1-2&t=LIacA659VKhtQ3Il-1" target="_blank" rel="noopener noreferrer" class="block">
+                        <img src="images/web-ui2.png" alt="Website UI/UX Project 2" class="w-full h-auto rounded-lg">
                     </a>
+                    <!-- <a href="#" target="_blank" rel="noopener noreferrer" class="block">
+                        <img src="images/web-ui2.png" alt="Website UI/UX Project 3" class="w-full h-auto rounded-lg">
+                    </a> -->
                 </div>
             </div>
         </div>
