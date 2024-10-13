@@ -388,6 +388,7 @@ let dotCount = 0; // To track the dots during backspacing
 const typingSpeed = 150; // Speed in milliseconds
 const backspacingSpeed = 100; // Speed of backspacing in milliseconds
 const pauseDuration = 1000; // Duration to pause after typing "Hi..."
+const pauseDuration2=500;
 
 function typeWriter() {
     const typedElement = document.getElementById("typed");
@@ -433,12 +434,20 @@ function typeWriter() {
 }
 
 function typeSubtitle() {
+    
+
     const typedSubtitleElement = document.getElementById("typed-subtitle");
-    if (subtitleIndex < typedSubtitle.length) {
-        typedSubtitleElement.innerHTML += typedSubtitle.charAt(subtitleIndex);
+    if (subtitleIndex === 0) {
+        setTimeout(() => {
+            typeSubtitle(); // Start typing after the pause
+        }, pauseDuration2);
+        subtitleIndex++; // Increment subtitleIndex so that pause happens only once
+    } else if (subtitleIndex <= typedSubtitle.length) {
+        typedSubtitleElement.innerHTML += typedSubtitle.charAt(subtitleIndex - 1);
         subtitleIndex++;
         setTimeout(typeSubtitle, typingSpeed);
     }
+
 }
 
 window.onload = function () {
