@@ -6,6 +6,24 @@
     --accent-color: #61A5C2; /* Accent color */
 }
 
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px #012A4A;
+	background-color: #a9d6e545;
+}
+
+::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #a9d6e59f;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: var(--text-color);
+}
+
+
 body {
     background-color: #00000f;
     background-image:  linear-gradient(#012A4A 1px, transparent 1px), linear-gradient(to right, #013A63 1px, #014F86 1px);
